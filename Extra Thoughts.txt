@@ -1,0 +1,18 @@
+What changes you would make to this interfaces for use in an RTOS environment?
+
+- When adapting interfaces for use in a Real-Time Operating System (RTOS) environment, several considerations has to be taken into account.
+a) Thread Safety: Ensure that all functions and data structures are thread-safe, meaning they can be safely accessed and modified by multiple threads concurrently. 
+This typically involves adding appropriate synchronization mechanisms such as mutexes, semaphores, or RTOS-specific synchronization primitives to protect critical sections of code and shared resources.
+b) Asynchronous Operation: Modify the interfaces to support asynchronous operation. This can be achieved by adding asynchronous read and write functions that utilize RTOS features like event flags, message queues, 
+or software timers to signal transaction completion.
+c) Priority Inversion and Inheritance Handling: Address priority inversion issues that may arise when higher-priority tasks are blocked by lower-priority tasks waiting on I2C transactions. 
+Implement priority inheritance or priority ceiling protocols to prevent priority inversion and ensure timely execution of critical tasks.
+
+
+How might the I2C API be improved?
+
+a) Provide a high-level interface that abstracts hardware details.
+Example: Instead of directly accessing hardware registers, developers use functions like i2c_read() and i2c_write().
+b) Have a initilization functions for setting the speed, peripheral, clock, addressing mode.
+c) Enhance error reporting and recovery mechanisms.
+Example: Return error codes with detailed descriptions and provide functions for error detection and recovery.
