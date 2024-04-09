@@ -91,51 +91,51 @@ typedef struct {
 /**
  * @brief Get the full-scale configuration of the magnetometer.
  *
- * @param[out] fullScaleConfigValue_pen Pointer to a variable to store the full-scale configuration value.
+ * @param[out] fullScaleConfigValuePen Pointer to a variable to store the full-scale configuration value.
  *
  * @return STATUS_OK if successful.
  */
-extern status_t mmt_drv_getFullScaleConfig(mmt_drv_configEn * fullScaleConfigValue_pen);
+extern status_t mmtDrvGetFullScaleConfig(mmt_drv_configEn * fullScaleConfigValuePen);
 
 
 /**
  * @brief Get the data rate configuration of the magnetometer.
  *
- * @param[out] dataRate_pst Pointer to a SpeedConfiguration struct to store the data rate configuration.
+ * @param[out] dataRatePst Pointer to a SpeedConfiguration struct to store the data rate configuration.
  *
  * @return STATUS_OK if successful.
  */
-extern status_t mmt_drv_getDataRate(mmt_drv_SpeedConfigurationSt * dataRate_pst);
+extern status_t mmtDrvGetDataRate(mmt_drv_SpeedConfigurationSt * dataRatePst);
 
 
 /**
  * @brief Set the data rate configuration of the magnetometer.
  *
- * @param[in] dataRate_pst SpeedConfiguration struct containing the desired data rate configuration.
+ * @param[in] dataRatePst SpeedConfiguration struct containing the desired data rate configuration.
  *
  * @return STATUS_OK if successful
  */
-extern status_t mmt_drv_setDataRate(mmt_drv_SpeedConfigurationSt dataRate_pst);
+extern status_t mmtDrvSetDataRate(mmt_drv_SpeedConfigurationSt dataRatePst);
 
 
 /**
  * @brief Enable or disable the interrupt pin of the magnetometer.
  *
- * @param[in] userInterruptState_b Boolean value indicating whether to enable (true) or disable (false) the interrupt pin.
+ * @param[in] userInterruptStateB Boolean value indicating whether to enable (true) or disable (false) the interrupt pin.
  *
  * @return STATUS_OK if successful.
  */
-extern status_t mmt_drv_setInterrupt(bool userInterruptState_b);
+extern status_t mmtDrvSetInterrupt(bool userInterruptStateB);
 
 
 /**
  * @brief Read the output data of a specified axis from the magnetometer.
  *
- * @param[in] axis_en 			Axis for which to read the output data (X, Y, or Z).
- * @param[out] outputData_p16 	Pointer to a variable to store the output data.
+ * @param[in] axisEn Axis for which to read the output data (X, Y, or Z).
+ * @param[out] outputDataP16 Pointer to a variable to store the output data.
  *
  * @return STATUS_OK if successful.
  */
-extern status_t mmt_drv_readOutputData(mmt_drv_AxisEn axis_en, int16_t * outputData_p16);
+extern status_t mmtDrvReadOutputData(mmt_drv_AxisEn axisEn, int16_t * outputDataP16);
 
 #endif /* MAGNETOMETER_DRIVER_H_ */

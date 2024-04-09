@@ -5,7 +5,8 @@
 
 typedef enum {
     STATUS_OK,
-    STATUS_ERROR
+    STATUS_ERROR,
+	STATUS_DEFAULT
 } status_t;
 
 status_t i2c_read(

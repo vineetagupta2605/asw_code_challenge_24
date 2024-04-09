@@ -16,7 +16,7 @@
 /******************************************************************************
  * #8 Extern Function Definitions
  ******************************************************************************/
-extern status_t mmt_drv_getFullScaleConfig(mmt_drv_configEn * fullScaleConfigValue_pen)
+extern status_t mmtDrvGetFullScaleConfig(mmt_drv_configEn * fullScaleConfigValue_pen)
 {
 	uint8_t readBuffer_u8;
 
@@ -48,7 +48,7 @@ extern status_t mmt_drv_getFullScaleConfig(mmt_drv_configEn * fullScaleConfigVal
 }
 
 
-extern status_t mmt_drv_getDataRate(mmt_drv_SpeedConfigurationSt * dataRate_pst)
+extern status_t mmtDrvGetDataRate(mmt_drv_SpeedConfigurationSt * dataRate_pst)
 {
 	uint8_t registerBuffer_u8;
 
@@ -64,7 +64,7 @@ extern status_t mmt_drv_getDataRate(mmt_drv_SpeedConfigurationSt * dataRate_pst)
 }
 
 
-extern status_t mmt_drv_setDataRate(mmt_drv_SpeedConfigurationSt dataRate_pst)
+extern status_t mmtDrvSetDataRate(mmt_drv_SpeedConfigurationSt dataRate_pst)
 {
 	uint8_t registerBuffer_u8 = ((dataRate_pst.dataRate << 2) & MMT_DRV_SPEED_MASK) | (dataRate_pst.mode & 0x03) | (dataRate_pst.fastOdr & MMT_DRV_FAST_ODR_MASK);
 	status_t status = i2c_write(MMT_DRV_I2C_BUS_ADDRESS, MMT_DRV_CTRL_REG1, 1u, &registerBuffer_u8);
@@ -73,14 +73,14 @@ extern status_t mmt_drv_setDataRate(mmt_drv_SpeedConfigurationSt dataRate_pst)
 }
 
 
-extern status_t mmt_drv_setInterrupt(bool userInterruptState_b)
+extern status_t mmtDrvSetInterrupt(bool userInterruptState_b)
 {
 	uint8_t readBuffer_u8;
 	status_t status = i2c_read(MMT_DRV_I2C_BUS_ADDRESS, MMT_DRV_INT_CFG, 1u, &readBuffer_u8);
 
 	if (status == STATUS_OK)
 	{
-		bool interruptStatus_u8 = (readBuffer_u8 & 0x01) != 0;
+		bool interruptStatus_u8 = (readBuffer_u8 & 0x01) != 0u;
 
 		if (userInterruptState_b == true && interruptStatus_u8 == false)
 		{
@@ -95,17 +95,17 @@ extern status_t mmt_drv_setInterrupt(bool userInterruptState_b)
 		}
 		else
 		{
-			/* Do nothing because it is already set as requested by the user */
+			status = STATUS_ERROR;
 		}
 	}
 
 	return status;
 }
 
-extern status_t mmt_drv_readOutputData(mmt_drv_AxisEn axis_en, int16_t *outputData)
+extern status_t mmtDrvReadOutputData(mmt_drv_AxisEn axis_en, int16_t *outputData)
 {
     uint8_t lowReg_u8, highReg_u8;
-    status_t status = STATUS_OK;
+    status_t status = STATUS_DEFAULT;
     uint8_t regAddress_u8;
 
     switch (axis_en) {
