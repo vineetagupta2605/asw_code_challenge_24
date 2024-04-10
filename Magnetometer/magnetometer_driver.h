@@ -18,10 +18,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <main.h>
-#include <i2c.h>
-
-/* Dummy include for compilation at personal system */
-#include <comm_i2c.h>
 
 /******************************************************************************
  * #2 Macro Declarations
